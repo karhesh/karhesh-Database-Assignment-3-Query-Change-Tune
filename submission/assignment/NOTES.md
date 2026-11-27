@@ -123,3 +123,13 @@ I ran the same query with a `#temp` table. SQL Server could use statistics on `I
 
 ![Sort after the fix](screenshots/task08/08_fixed_no_warning.png)
 
+## Task 9
+
+`DISTINCT LastName` scanned 85,403 rows. Hash Match returned 62 distinct names.
+
+![DISTINCT on LastName](screenshots/task09/09_distinct_no_index.png)
+
+`DISTINCT Id` since Primary Key is already indexed so the plan goes directly to select
+
+![DISTINCT on Id](screenshots/task09/09_distinct_unique_column.png)
+
