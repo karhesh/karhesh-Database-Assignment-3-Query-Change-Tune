@@ -113,3 +113,13 @@ Logical Reads After: 18
 
 ![7.8 after](screenshots/task07/7.8_after.png)
 
+## Task 8
+
+I sorted the non-deleted users by last name. With a table variable, SQL Server estimated about 292 rows, but the sort got 68,323. It ran out of its granted memory and spilled to `tempdb`.
+
+![Sort spill warning](screenshots/task08/08_spill_warning.png)
+
+I ran the same query with a `#temp` table. SQL Server could use statistics on `IsDeleted`, so it estimated 68,323 rows and gave the sort enough memory. The warning disappeared.
+
+![Sort after the fix](screenshots/task08/08_fixed_no_warning.png)
+
