@@ -47,3 +47,69 @@ SELECT: Returned the result. The plan shows 12 parallel workers, a 14 MB memory 
 
 ![SELECT properties](screenshots/task06/06_prob_select.png)
 
+## Task 7
+
+7.1 => The problem is: Year and Month functions inside a where scan every row => bad performance
+Logical Reads Before : 1006
+Logical Reads After : 13
+
+![7.1 before](screenshots/task07/7.1_before.png)
+
+![7.1 after](screenshots/task07/7.1_after.png)
+
+7.2 => The problem is: DATEDIFF Reads through all the rows
+Logical Read Before: 599
+Logical Reads After: 76
+
+![7.2 before](screenshots/task07/7.2_before.png)
+
+![7.2 after](screenshots/task07/7.2_after.png)
+
+7.3 => The problem is: LEFT Reads through all the rows
+Logical Read Before: 1267
+Logical Reads After: 20
+
+![7.3 before](screenshots/task07/7.3_before.png)
+
+![7.3 after](screenshots/task07/7.3_after.png)
+
+7.4 => The problem is: Id + 1 makes SQL calculate this value for all of the rows
+Logical Read Before: 130937
+Logical Reads After: 4
+
+![7.4 before](screenshots/task07/7.4_before.png)
+
+![7.4 after](screenshots/task07/7.4_after.png)
+
+7.5 => The problem is: using N'' while the type is varchar makes it converts all the rows
+Logical Read Before: 725
+Logical Reads After: 3
+
+![7.5 before](screenshots/task07/7.5_before.png)
+
+![7.5 after](screenshots/task07/7.5_after.png)
+
+7.6 => The problem is: UPPER scan through all of the rows while not using it will give the same result
+Logical Read Before: 1006
+Logical Reads After: 3
+
+![7.6 before](screenshots/task07/7.6_before.png)
+
+![7.6 after](screenshots/task07/7.6_after.png)
+
+7.7 => The problem is: The plan sql uses plan that work even if @LastName is null
+Logical Read Before: 1267
+Logical Reads After: 18
+
+![7.7 before](screenshots/task07/7.7_before.png)
+
+![7.7 after](screenshots/task07/7.7_after.png)
+
+7.8 => The problem is: using CONCAT scans all of the rows
+Logical Read Before: 1267
+Logical Reads After: 18
+
+![7.8 before](screenshots/task07/7.8_before.png)
+
+![7.8 after](screenshots/task07/7.8_after.png)
+
