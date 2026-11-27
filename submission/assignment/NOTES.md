@@ -133,3 +133,8 @@ I ran the same query with a `#temp` table. SQL Server could use statistics on `I
 
 ![DISTINCT on Id](screenshots/task09/09_distinct_unique_column.png)
 
+## Task 10
+
+I may use numbers when database creates all the rows, also numerics take less space in indexes unlike GUID which takes 16 bytes, the Tradeoff of numbers is predictability.
+
+I may use GUID when needing non-predictable IDs.
